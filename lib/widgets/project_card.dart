@@ -1,8 +1,6 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portofolio/constants/colors.dart';
-import 'package:my_portofolio/constants/project_items.dart';
-import 'package:my_portofolio/constants/text_value.dart';
 
 class ProjectCard extends StatelessWidget {
   const ProjectCard(

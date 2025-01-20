@@ -4,10 +4,11 @@ import 'package:my_portofolio/constants/nav_items.dart';
 import 'package:my_portofolio/constants/project_items.dart';
 import 'package:my_portofolio/constants/skill_items.dart';
 import 'package:my_portofolio/constants/text_value.dart';
+import 'package:my_portofolio/widgets/about_desktop.dart';
+import 'package:my_portofolio/widgets/about_mobile.dart';
 import 'package:my_portofolio/widgets/project_card.dart';
-import 'package:my_portofolio/widgets/skill_card.dart';
 
-import '../widgets/carousel_skills.dart';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:js' as js;
 
 class HomePage extends StatelessWidget {
@@ -62,7 +63,7 @@ class HomePage extends StatelessWidget {
             //MAIN
             Container(
               padding: EdgeInsets.symmetric(vertical: 30),
-              height: screenSize.height,
+              height: screenSize.height / 1,
               child: Stack(
                 children: [
                   Positioned(
@@ -76,49 +77,8 @@ class HomePage extends StatelessWidget {
                       )),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          width: screenWidth / 3,
-                          margin: EdgeInsets.only(top: 200, left: 200),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Muhammad Hilmi Satrio",
-                                style: TextStyle(
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.bold,
-                                    color: CustomColor.whitePrimary,
-                                    letterSpacing: 0.8),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                aboutMe,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300,
-                                    color: CustomColor.whitePrimary,
-                                    letterSpacing: 0.8),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Image.asset(
-                          "assets/programmer.png",
-                          width: screenWidth / 3,
-                        )
-                      ],
-                    ),
+                    padding: EdgeInsets.all(10),
+                    child: (screenWidth < 600) ? AboutMobile() : AboutDesktop(),
                   ),
                 ],
               ),
@@ -353,10 +313,10 @@ class HomePage extends StatelessWidget {
                   ),
                 ]),
             SizedBox(
-              height: 20,
+              height: 40,
             ),
 
-            Container(
+            SizedBox(
               height: 200,
               child: Column(children: [
                 Text(
