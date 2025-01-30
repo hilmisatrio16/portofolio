@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -22,8 +23,10 @@ class HomeContent extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-              left: -90,
-              top: 70,
+            left: -90,
+            top: 70,
+            child: FadeIn(
+              animate: true,
               child: Container(
                 width: 450,
                 height: 450,
@@ -38,7 +41,9 @@ class HomeContent extends StatelessWidget {
                     ),
                   ],
                 ),
-              )),
+              ),
+            ),
+          ),
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(10),

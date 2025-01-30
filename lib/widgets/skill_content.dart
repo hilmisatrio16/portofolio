@@ -49,7 +49,7 @@ class SkillContent extends StatelessWidget {
             ],
           ),
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
               decoration: BoxDecoration(),
               alignment: Alignment.center,
               child: Column(mainAxisSize: MainAxisSize.min, children: [

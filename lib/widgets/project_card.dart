@@ -8,11 +8,13 @@ class ProjectCard extends StatelessWidget {
       required this.imgAsset,
       required this.titleApp,
       required this.subTitleApp,
-      required this.projectDetails});
+      required this.projectDetails,
+      required this.technologies});
   final String imgAsset;
   final String titleApp;
   final String subTitleApp;
   final List<String> projectDetails;
+  final List<String> technologies;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class ProjectCard extends StatelessWidget {
         imgAsset: imgAsset,
         titleApp: titleApp,
         subTitleApp: subTitleApp,
+        technologies: technologies,
       ),
       back: BackCardProject(
         projectDetails: projectDetails,
@@ -76,11 +79,13 @@ class FrontCardProject extends StatelessWidget {
     required this.imgAsset,
     required this.titleApp,
     required this.subTitleApp,
+    required this.technologies,
   });
 
   final String imgAsset;
   final String titleApp;
   final String subTitleApp;
+  final List<String> technologies;
 
   @override
   Widget build(BuildContext context) {
@@ -150,19 +155,16 @@ class FrontCardProject extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Image.asset(
-                  "assets/kotlin.png",
-                  width: 20,
-                  height: 20,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Image.asset(
-                  "assets/android_studio.png",
-                  width: 20,
-                  height: 20,
-                )
+                for (int i = 0; i < technologies.length; i++)
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 6),
+                    child: Image.asset(
+                      "assets/${technologies[i]}.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
               ],
             ),
           )

@@ -63,6 +63,7 @@ class ProjectContent extends StatelessWidget {
                       titleApp: listProject[i].titleApp,
                       subTitleApp: listProject[i].subTitleApp,
                       projectDetails: listProject[i].projectDetails,
+                      technologies: listProject[i].technologies,
                     )
                 ],
               ),

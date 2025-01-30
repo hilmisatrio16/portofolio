@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_portofolio/constants/colors.dart';
-import 'package:my_portofolio/constants/experience_items.dart';
 import 'package:my_portofolio/constants/nav_items.dart';
-import 'package:my_portofolio/constants/project_items.dart';
-import 'package:my_portofolio/constants/skill_items.dart';
-import 'package:my_portofolio/constants/text_value.dart';
-import 'package:my_portofolio/widgets/about_desktop.dart';
-import 'package:my_portofolio/widgets/about_mobile.dart';
-import 'package:my_portofolio/widgets/experience_card.dart';
-import 'package:my_portofolio/widgets/project_card.dart';
 
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:js' as js;
 
 import '../widgets/about_content.dart';
 import '../widgets/experience_container.dart';
