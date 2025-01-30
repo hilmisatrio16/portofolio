@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -19,27 +20,37 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 30),
-      height: screenSize.height / 1,
+      height:
+          (screenWidth < 600) ? screenSize.height / 1.4 : screenSize.height / 1,
       child: Stack(
         children: [
-          Positioned(
-            left: -90,
-            top: 70,
-            child: FadeIn(
-              animate: true,
-              child: Container(
-                width: 450,
-                height: 450,
-                decoration: BoxDecoration(
-                  color: CustomColor.pink,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: CustomColor.pink,
-                      offset: Offset(0.0, 1.0), //(x,y)
-                      blurRadius: 6.0,
-                    ),
-                  ],
+          AvatarGlow(
+            startDelay: const Duration(milliseconds: 2000),
+            glowColor: CustomColor.pink,
+            glowShape: BoxShape.circle,
+            glowCount: 1,
+            glowRadiusFactor: 0.3,
+            animate: true,
+            curve: Curves.fastOutSlowIn,
+            child: Positioned(
+              left: -90,
+              top: 70,
+              child: FadeIn(
+                animate: true,
+                child: Container(
+                  width: (screenWidth < 600) ? 380 : 450,
+                  height: (screenWidth < 600) ? 380 : 450,
+                  decoration: BoxDecoration(
+                    color: CustomColor.pink,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: CustomColor.pink,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

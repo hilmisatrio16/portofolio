@@ -38,50 +38,81 @@ class _HomePageState extends State<HomePage> {
           children: [
             //Header Nav
             SizedBox(),
-            Container(
-              height: 60.0,
-              alignment: Alignment.center,
-              margin: const EdgeInsets.symmetric(
-                vertical: 20.0,
-                horizontal: 20.0,
+            if (screenWidth > 600)
+              Container(
+                height: 60.0,
+                alignment: Alignment.center,
+                margin: const EdgeInsets.symmetric(
+                  vertical: 20.0,
+                  horizontal: 20.0,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: CustomColor.navColor,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: CustomColor.navColor,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      for (int i = 0; i < navItems.length; i++)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: TextButton(
+                              onPressed: () {
+                                scrollToSection(i);
+                              },
+                              child: Text(
+                                navItems[i],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: CustomColor.whitePrimary,
+                                ),
+                              )),
+                        )
+                    ],
+                  ),
+                ),
               ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: CustomColor.navColor,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: CustomColor.navColor,
-                      offset: Offset(0.0, 1.0), //(x,y)
-                      blurRadius: 6.0,
+            if (screenWidth <= 600)
+              Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.fromLTRB(0, 26, 26, 0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      color: CustomColor.fullDarkBlue, // Warna latar belakang
+                      borderRadius: BorderRadius.circular(50),
                     ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    for (int i = 0; i < navItems.length; i++)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        child: TextButton(
-                            onPressed: () {
-                              scrollToSection(i);
-                            },
-                            child: Text(
-                              navItems[i],
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: CustomColor.whitePrimary,
-                              ),
-                            )),
-                      )
-                  ],
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(50),
+                      focusColor: CustomColor.fullDarkBlue,
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Icon(
+                          Icons.menu,
+                          size: 40,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
             //MAIN
             HomeContent(screenSize: screenSize, screenWidth: screenWidth),
             SizedBox(

@@ -34,40 +34,41 @@ List<Project> listProject = [
         "firebase"
       ]),
   Project(
-      imgAsset: "assets/obrol.png",
-      titleApp: "OBROL",
+      imgAsset: "assets/flyid.png",
+      titleApp: "FlyId",
       subTitleApp:
-          "is a social app useful for interacting with communities from around the world.",
+          "is a mobile application that allows users to book domestic flight tickets online, with one-trip and round-trip options.",
       projectDetails: [
-        lorem,
-        lorem,
-        lorem,
-        lorem,
+        "Developed with native android technology using Kotlin programming language and Android Studio as IDEA.",
+        "Apply MVVM Design pattern to application development.",
+        "Using some libraries on Android Jetpack and Retrofit to send and retrive using REST API.",
+        "Features search flight, booking one trip and roundtrip, notification, print booking ticket, and payment.",
+        "Compatible with Android Version 7.0 (Nougat)",
+      ],
+      technologies: [
+        "kotlin",
+        "android_studio"
+      ]),
+  Project(
+      imgAsset: "assets/cvision.png",
+      titleApp: "C-Vision",
+      subTitleApp:
+          "is a mobile application used to help diagnose cataract eyes with the help of AI (Artificial Intelligence).",
+      projectDetails: [
+        "Developed with native android technology using Kotlin programming language and Android Studio as IDEA.",
+        "Apply MVVM Design pattern to application development.",
+        "Deploy model machine learning using TensorFlow Lite",
+        "Provide cataract detection using AI (Artificial Intellegent)",
+        "Compatible with Android Version 7.0 (Nougat)",
       ],
       technologies: [
         "kotlin",
         "android_studio",
-        "firebase"
+        "tensorflow"
       ]),
   Project(
       imgAsset: "assets/obrol.png",
-      titleApp: "OBROL",
-      subTitleApp:
-          "is a social app useful for interacting with communities from around the world.",
-      projectDetails: [
-        lorem,
-        lorem,
-        lorem,
-        lorem,
-      ],
-      technologies: [
-        "kotlin",
-        "android_studio",
-        "firebase"
-      ]),
-  Project(
-      imgAsset: "assets/obrol.png",
-      titleApp: "OBROL",
+      titleApp: "StoryKu",
       subTitleApp:
           "is a social app useful for interacting with communities from around the world.",
       projectDetails: [

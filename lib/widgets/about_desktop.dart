@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
-import '../constants/text_value.dart';
 
 class AboutDesktop extends StatelessWidget {
   const AboutDesktop({super.key});
@@ -57,8 +56,8 @@ class AboutDesktop extends StatelessWidget {
           width: 40,
         ),
         Image.asset(
-          "assets/programmer.png",
-          width: screenWidth / 3,
+          "assets/programmer_icon.png",
+          width: 400,
         )
       ],
     );

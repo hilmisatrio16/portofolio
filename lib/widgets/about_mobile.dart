@@ -46,11 +46,11 @@ class AboutMobile extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 40,
+          height: 60,
         ),
         Image.asset(
-          "assets/programmer.png",
-          width: screenWidth / 2,
+          "assets/programmer_icon.png",
+          width: screenWidth / 1.8,
         )
       ],
     );

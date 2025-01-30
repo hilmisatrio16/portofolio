@@ -49,7 +49,7 @@ class BackCardProject extends StatelessWidget {
                 blurRadius: 5)
           ]),
       width: 220,
-      height: 420,
+      height: 450,
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         for (int i = 0; i < projectDetails.length; i++)
@@ -101,7 +101,7 @@ class FrontCardProject extends StatelessWidget {
                 blurRadius: 5)
           ]),
       width: 220,
-      height: 420,
+      height: 450,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -111,7 +111,7 @@ class FrontCardProject extends StatelessWidget {
             child: Image.asset(
               imgAsset,
               width: 230,
-              height: 240,
+              height: 230,
               fit: BoxFit.fill,
             ),
           ),
@@ -146,12 +146,13 @@ class FrontCardProject extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
+          Spacer(),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 4, 20, 47),
-                borderRadius: BorderRadius.circular(6)),
+                borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
