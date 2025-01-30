@@ -59,9 +59,10 @@ class BackCardProject extends StatelessWidget {
             title: Text(
               projectDetails[i],
               style: TextStyle(
-                  fontSize: 8,
+                  fontSize: 10,
+                  fontFamily: "Montserrat",
                   color: CustomColor.whitePrimary,
-                  fontWeight: FontWeight.w100),
+                  fontWeight: FontWeight.w300),
             ),
           )
       ]),
@@ -117,6 +118,7 @@ class FrontCardProject extends StatelessWidget {
             child: Text(
               titleApp,
               style: TextStyle(
+                  fontFamily: "Montserrat",
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                   color: CustomColor.whitePrimary),
@@ -129,7 +131,11 @@ class FrontCardProject extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
               subTitleApp,
-              style: TextStyle(fontSize: 12, color: CustomColor.whitePrimary),
+              style: TextStyle(
+                  fontSize: 12,
+                  fontFamily: "Montserrat",
+                  fontWeight: FontWeight.w300,
+                  color: CustomColor.whitePrimary),
             ),
           ),
           SizedBox(

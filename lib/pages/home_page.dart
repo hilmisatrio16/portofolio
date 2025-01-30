@@ -1,18 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:my_portofolio/constants/colors.dart';
+import 'package:my_portofolio/constants/experience_items.dart';
 import 'package:my_portofolio/constants/nav_items.dart';
 import 'package:my_portofolio/constants/project_items.dart';
 import 'package:my_portofolio/constants/skill_items.dart';
 import 'package:my_portofolio/constants/text_value.dart';
 import 'package:my_portofolio/widgets/about_desktop.dart';
 import 'package:my_portofolio/widgets/about_mobile.dart';
+import 'package:my_portofolio/widgets/experience_card.dart';
 import 'package:my_portofolio/widgets/project_card.dart';
 
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:js' as js;
 
-class HomePage extends StatelessWidget {
+import '../widgets/about_content.dart';
+import '../widgets/experience_container.dart';
+import '../widgets/footer.dart';
+import '../widgets/home_content.dart';
+import '../widgets/project_content.dart';
+import '../widgets/skill_content.dart';
+import '../widgets/social_media.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final scrollControl = ScrollController();
+  final List<GlobalKey> navbarKeys = List.generate(4, (index) => GlobalKey());
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +41,12 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: CustomColor.darkBlue,
       body: SingleChildScrollView(
+        controller: scrollControl,
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
             //Header Nav
+            SizedBox(),
             Container(
               height: 60.0,
               alignment: Alignment.center,
@@ -35,8 +56,16 @@ class HomePage extends StatelessWidget {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                    color: CustomColor.navColor,
-                    borderRadius: BorderRadius.circular(20)),
+                  color: CustomColor.navColor,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: CustomColor.navColor,
+                      offset: Offset(0.0, 1.0), //(x,y)
+                      blurRadius: 6.0,
+                    ),
+                  ],
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
@@ -46,7 +75,9 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 10),
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              scrollToSection(i);
+                            },
                             child: Text(
                               navItems[i],
                               style: TextStyle(
@@ -61,263 +92,35 @@ class HomePage extends StatelessWidget {
               ),
             ),
             //MAIN
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 30),
-              height: screenSize.height / 1,
-              child: Stack(
-                children: [
-                  Positioned(
-                      left: -90,
-                      top: 70,
-                      child: Container(
-                        width: 450,
-                        height: 450,
-                        decoration: BoxDecoration(
-                            color: CustomColor.pink, shape: BoxShape.circle),
-                      )),
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(10),
-                    child: (screenWidth < 600) ? AboutMobile() : AboutDesktop(),
-                  ),
-                ],
-              ),
-            ),
-            //Experiences
-            const SizedBox(
-              height: 10,
-            ),
-            Wrap(children: [
-              Column(
-                children: [
-                  Text(
-                    "Experiences",
-                    style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                        color: CustomColor.whitePrimary),
-                  ),
-                  SizedBox(
-                    height: 14,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 110,
-                        height: 6,
-                        decoration:
-                            BoxDecoration(color: CustomColor.whitePrimary),
-                      ),
-                      Container(
-                        width: 110,
-                        height: 6,
-                        decoration: BoxDecoration(color: CustomColor.pink),
-                      ),
-                      Container(
-                        width: 110,
-                        height: 6,
-                        decoration: BoxDecoration(color: CustomColor.navColor),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                    width: screenWidth / 1.6,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: CustomColor.fullDarkBlue,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Container(
-                      margin: EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Image.asset(
-                                "assets/bangkit.png",
-                              ),
-                              Flexible(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      bangkitExperience,
-                                      style: TextStyle(
-                                          color: CustomColor.whitePrimary,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    SizedBox(
-                                      height: 14,
-                                    ),
-                                    Text(
-                                      "14 Agu 2023 - 31 Des 2023",
-                                      style: TextStyle(
-                                          color: CustomColor.whitePrimary,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w100),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                          for (int i = 0; i < 7; i++)
-                            ListTile(
-                              leading: Icon(
-                                Icons.circle,
-                                size: 10,
-                                color: CustomColor.whitePrimary,
-                              ),
-                              title: Text(
-                                lorem,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: CustomColor.whitePrimary,
-                                    fontWeight: FontWeight.w100),
-                              ),
-                            )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ]),
-            //SKILLS
-            const SizedBox(
-              height: 10,
-            ),
-            Wrap(children: [
-              Column(
-                children: [
-                  Text(
-                    "Skills",
-                    style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                        color: CustomColor.whitePrimary),
-                  ),
-                  SizedBox(
-                    height: 14,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 110,
-                        height: 6,
-                        decoration:
-                            BoxDecoration(color: CustomColor.whitePrimary),
-                      ),
-                      Container(
-                        width: 110,
-                        height: 6,
-                        decoration: BoxDecoration(color: CustomColor.pink),
-                      ),
-                      Container(
-                        width: 110,
-                        height: 6,
-                        decoration: BoxDecoration(color: CustomColor.navColor),
-                      )
-                    ],
-                  ),
-                  Container(
-                      height: screenSize.height,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                      decoration: BoxDecoration(),
-                      alignment: Alignment.center,
-                      child: Wrap(
-                          spacing: 16,
-                          runSpacing: 16,
-                          alignment: WrapAlignment.center,
-                          children: [
-                            for (int i = 0; i < skillItems.length; i++)
-                              skillItems[i]
-                          ])),
-                ],
-              ),
-            ]),
-            //PROJECT
-            const SizedBox(
+            HomeContent(screenSize: screenSize, screenWidth: screenWidth),
+            SizedBox(
               height: 40,
             ),
-            Wrap(
-                // height: screenSize.height,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        "Projects",
-                        style: TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.w600,
-                            color: CustomColor.whitePrimary),
-                      ),
-                      SizedBox(
-                        height: 14,
-                      ),
-                      SizedBox(
-                        height: 14,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 110,
-                            height: 6,
-                            decoration:
-                                BoxDecoration(color: CustomColor.whitePrimary),
-                          ),
-                          Container(
-                            width: 110,
-                            height: 6,
-                            decoration: BoxDecoration(color: CustomColor.pink),
-                          ),
-                          Container(
-                            width: 110,
-                            height: 6,
-                            decoration:
-                                BoxDecoration(color: CustomColor.navColor),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Wrap(
-                        spacing: 12,
-                        runSpacing: 16,
-                        children: [
-                          for (int i = 0; i < listProject.length; i++)
-                            ProjectCard(
-                              imgAsset: listProject[i].imgAsset,
-                              titleApp: listProject[i].titleApp,
-                              subTitleApp: listProject[i].subTitleApp,
-                              projectDetails: listProject[i].projectDetails,
-                            )
-                        ],
-                      )
-                    ],
-                  ),
-                ]),
+            //About
+            AboutContent(navbarKeys: navbarKeys, screenWidth: screenWidth),
+            //Experiences
+            SizedBox(
+              key: navbarKeys[1],
+              height: 10,
+            ),
+            ExperinceContainer(screenWidth: screenWidth),
+            //SKILLS
+            SizedBox(
+              key: navbarKeys[2],
+              height: 10,
+            ),
+            SkillContent(screenSize: screenSize),
+            //PROJECT
+            SizedBox(
+              key: navbarKeys[3],
+              height: 40,
+            ),
+            ProjectContent(),
             SizedBox(
               height: 40,
             ),
 
             SizedBox(
-              height: 200,
               child: Column(children: [
                 Text(
                   "Social Media",
@@ -352,59 +155,36 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 14,
+                  height: 30,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 20,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        js.context.callMethod(
-                            'open', ["https://github.com/hilmisatrio16"]);
-                      },
-                      child: Image.asset(
-                        "assets/github.png",
-                        width: 50,
-                        height: 50,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        js.context.callMethod('open',
-                            ["https://www.linkedin.com/in/mhilmisatrio"]);
-                      },
-                      child: Image.asset(
-                        "assets/linkedin.png",
-                        width: 50,
-                        height: 50,
-                      ),
-                    )
-                  ],
+                SocialMedia(),
+                SizedBox(
+                  height: 30,
                 ),
               ]),
             ),
             SizedBox(
               height: 14,
             ),
-            Container(
-              alignment: Alignment.center,
-              height: 100,
-              width: screenWidth,
-              decoration: BoxDecoration(
-                color: CustomColor.fullDarkBlue.withOpacity(0.8),
-              ),
-              child: Text(
-                "created using Flutter in 2025",
-                style: TextStyle(
-                    color: CustomColor.whitePrimary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600),
-              ),
-            )
+            Footer(screenWidth: screenWidth)
           ],
         ),
       ),
+    );
+  }
+
+  void scrollToSection(int navIndex) {
+    if (navIndex == 4) {
+      // open a blog page
+      // js.context.callMethod('open', [SnsLinks.blog]);
+      return;
+    }
+
+    final key = navbarKeys[navIndex];
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
     );
   }
 }

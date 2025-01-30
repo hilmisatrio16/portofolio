@@ -16,7 +16,7 @@ class AboutDesktop extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           width: screenWidth / 3,
-          margin: EdgeInsets.only(top: 200, left: 200),
+          margin: EdgeInsets.only(top: 160, left: 140),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,7 +25,8 @@ class AboutDesktop extends StatelessWidget {
                 "Hai 👋\nI'm Muhammad Hilmi Satrio",
                 style: TextStyle(
                     fontSize: 26,
-                    fontWeight: FontWeight.bold,
+                    fontFamily: "Montserrat",
+                    fontWeight: FontWeight.w700,
                     color: CustomColor.whitePrimary,
                     letterSpacing: 0.8),
               ),
@@ -35,21 +36,14 @@ class AboutDesktop extends StatelessWidget {
               Text(
                 "Mobile Developer",
                 style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    fontFamily: "Montserrat",
+                    fontWeight: FontWeight.w500,
                     color: const Color.fromARGB(255, 94, 93, 93),
                     letterSpacing: 0.8),
               ),
               SizedBox(
                 height: 20,
-              ),
-              Text(
-                aboutMe,
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                    color: CustomColor.whitePrimary,
-                    letterSpacing: 0.8),
               )
             ],
           ),
