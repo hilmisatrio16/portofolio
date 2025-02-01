@@ -20,11 +20,12 @@ class Footer extends StatelessWidget {
         color: CustomColor.fullDarkBlue.withOpacity(0.8),
       ),
       child: Text(
-        "created using Flutter in 2025",
+        "created using Flutter in 2025 by hilmisatrio",
         style: TextStyle(
             color: CustomColor.whitePrimary,
             fontSize: 16,
-            fontWeight: FontWeight.w600),
+            fontFamily: "Montserrat",
+            fontWeight: FontWeight.w400),
       ),
     );
   }

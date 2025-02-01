@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_portofolio/constants/colors.dart';
 import 'package:my_portofolio/constants/nav_items.dart';
+import 'package:my_portofolio/controllers/button_nav_controller.dart';
 
 // ignore: avoid_web_libraries_in_flutter
 
@@ -22,7 +24,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollControl = ScrollController();
-  final List<GlobalKey> navbarKeys = List.generate(4, (index) => GlobalKey());
+  final List<GlobalKey> navbarKeys = List.generate(5, (index) => GlobalKey());
+  final ButtonNavController controller = Get.put(ButtonNavController());
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +103,9 @@ class _HomePageState extends State<HomePage> {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(50),
                       focusColor: CustomColor.fullDarkBlue,
-                      onTap: () {},
+                      onTap: () {
+                        controller.toggleButton();
+                      },
                       child: Padding(
                         padding: EdgeInsets.all(8),
                         child: Icon(
@@ -114,7 +119,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             //MAIN
-            HomeContent(screenSize: screenSize, screenWidth: screenWidth),
+            HomeContent(
+                screenSize: screenSize,
+                screenWidth: screenWidth,
+                controller: controller,
+                navbarKeys: navbarKeys,
+                scrollToSection: scrollToSection),
             SizedBox(
               height: 40,
             ),
@@ -143,6 +153,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             SizedBox(
+              key: navbarKeys[4],
               child: Column(children: [
                 Text(
                   "Social Media",
@@ -196,7 +207,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void scrollToSection(int navIndex) {
-    if (navIndex == 4) {
+    if (navIndex == 5) {
       // open a blog page
       // js.context.callMethod('open', [SnsLinks.blog]);
       return;

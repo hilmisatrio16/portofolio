@@ -36,6 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   infinite_carousel: ^1.1.1
+  get: ^4.6.6
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
